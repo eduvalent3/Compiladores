@@ -1,0 +1,14 @@
+program Exemplo
+    final int MAX = 10;
+    int x;
+{
+    void main() 
+    {
+        x = 5;
+        if (x < MAX) {
+            print(x);
+        } else {
+            print(MAX);
+        }
+    }
+}

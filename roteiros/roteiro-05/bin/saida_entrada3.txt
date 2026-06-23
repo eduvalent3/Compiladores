@@ -1,0 +1,64 @@
+--- Iniciando Analise Lexica e Sintatica ---
+Lendo o arquivo: entrada3.txt
+--------------------------------------------
+[1,1] KEY_PROGRAM: program
+[1,9] IDENT: TesteEstruturas
+[2,5] KEY_CLASS: class
+[2,11] IDENT: Item
+[2,16] LBRACE: {
+[3,9] IDENT: int
+[3,13] IDENT: id
+[3,15] SEMI: ;
+[4,9] IDENT: int
+[4,13] IDENT: quantidade
+[4,23] SEMI: ;
+[5,5] RBRACE: }
+[7,5] IDENT: int
+[7,8] LBRACKET: [
+[7,9] RBRACKET: ]
+[7,11] IDENT: vetorDados
+[7,21] SEMI: ;
+[8,1] LBRACE: {
+[9,5] IDENT: int
+[9,9] IDENT: calcularTotal
+[9,22] LPAREN: (
+[9,23] IDENT: int
+[9,27] IDENT: preco
+[9,32] COMMA: ,
+[9,34] IDENT: int
+[9,38] IDENT: qtd
+[9,41] RPAREN: )
+[10,5] LBRACE: {
+[11,9] KEY_RETURN: return
+[11,16] IDENT: preco
+[11,22] MULOP_MULT: *
+[11,24] IDENT: qtd
+[11,27] SEMI: ;
+[12,5] RBRACE: }
+[14,5] KEY_VOID: void
+[14,10] IDENT: rodar
+[14,15] LPAREN: (
+[14,16] RPAREN: )
+[15,5] LBRACE: {
+[16,9] IDENT: vetorDados
+[16,20] ASSIGN: =
+[16,22] KEY_NEW: new
+[16,26] IDENT: int
+[16,29] LBRACKET: [
+[16,30] INT: 5
+[16,31] RBRACKET: ]
+[16,32] SEMI: ;
+[17,9] KEY_PRINT: print
+[17,14] LPAREN: (
+[17,15] IDENT: calcularTotal
+[17,28] LPAREN: (
+[17,29] INT: 10
+[17,31] COMMA: ,
+[17,33] INT: 3
+[17,34] RPAREN: )
+[17,35] RPAREN: )
+[17,36] SEMI: ;
+[18,5] RBRACE: }
+[19,1] RBRACE: }
+--------------------------------------------
+--- Analise Concluida com SUCESSO! ---

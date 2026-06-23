@@ -1,0 +1,8 @@
+program TesteErro
+{
+    void quebrar() {
+        int x;
+        x = 10  // <-- Sem ponto e vírgula aqui de propósito!
+        print(x);
+    }
+}

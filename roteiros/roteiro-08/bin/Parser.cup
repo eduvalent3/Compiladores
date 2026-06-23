@@ -1,0 +1,135 @@
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.BufferedWriter;
+
+parser code {:
+    // Relatório de erros sintáticos personalizado
+    public void report_error(String message, Object info) {
+        System.err.print("Erro Sintatico: " + message);
+        if (info instanceof java_cup.runtime.Symbol) {
+            java_cup.runtime.Symbol s = (java_cup.runtime.Symbol) info;
+            if (s.left >= 0) {
+                System.err.print(" na linha " + (s.left + 1) + ", coluna " + (s.right + 1));
+            }
+        }
+        System.err.println();
+    }
+
+    public void report_fatal_error(String message, Object info) {
+        report_error(message, info);
+        System.exit(1);
+    }
+:};
+
+/* Declaração de Terminais (Tokens vindos do Scanner) */
+terminal KEY_PROGRAM, KEY_FINAL, KEY_CLASS, KEY_VOID, KEY_IF, KEY_ELSE, KEY_WHILE, KEY_RETURN, KEY_READ, KEY_PRINT, KEY_NEW;
+terminal RELOP_EQ, RELOP_NE, RELOP_GE, RELOP_LE, RELOP_GT, RELOP_LT;
+terminal ASSIGN, ADDOP_PLUS, ADDOP_MINUS, MULOP_MULT, MULOP_DIV, MULOP_MOD;
+terminal LBRACE, RBRACE, LPAREN, RPAREN, LBRACKET, RBRACKET, SEMI, COMMA, DOT;
+terminal String IDENT, INT, FLOAT, CHAR;
+
+/* Declaração de Não-Terminais (Regras da Gramática Java--) */
+non terminal Program, DeclList, Decl, ConstDecl, VarDecl, ClassDecl;
+non terminal MethodDeclList, MethodDecl, VarDeclList, FormPars, Type;
+non terminal Block, StatementList, Statement, ActPars, ExprList, Condition;
+non terminal Relop, Expr, Term, Factor, Designator, IdentList;
+non terminal Addop, Mulop;
+
+/* Precedência de Operadores */
+precedence right ASSIGN;
+precedence left RELOP_EQ, RELOP_NE, RELOP_GT, RELOP_GE, RELOP_LT, RELOP_LE;
+precedence left ADDOP_PLUS, ADDOP_MINUS;
+precedence left MULOP_MULT, MULOP_DIV, MULOP_MOD;
+
+/* A Gramática Java-- (Baseada na Seção 9 do seu PDF) */
+start with Program;
+
+Program ::= KEY_PROGRAM IDENT DeclList LBRACE MethodDeclList RBRACE
+          | KEY_PROGRAM IDENT LBRACE MethodDeclList RBRACE ;
+
+DeclList ::= DeclList Decl
+           | Decl ;
+
+Decl ::= ConstDecl
+       | VarDecl
+       | ClassDecl ;
+
+ConstDecl ::= KEY_FINAL Type IDENT ASSIGN INT SEMI
+            | KEY_FINAL Type IDENT ASSIGN CHAR SEMI ;
+
+VarDecl ::= Type IDENT IdentList SEMI ;
+
+IdentList ::= IdentList COMMA IDENT
+            | /* vazio */ ;
+
+ClassDecl ::= KEY_CLASS IDENT LBRACE VarDeclList RBRACE ;
+
+VarDeclList ::= VarDeclList VarDecl
+              | /* vazio */ ;
+
+MethodDeclList ::= MethodDeclList MethodDecl
+                 | /* vazio */ ;
+
+MethodDecl ::= Type IDENT LPAREN FormPars RPAREN VarDeclList Block
+             | KEY_VOID IDENT LPAREN FormPars RPAREN VarDeclList Block
+             | Type IDENT LPAREN RPAREN VarDeclList Block
+             | KEY_VOID IDENT LPAREN RPAREN VarDeclList Block ;
+
+FormPars ::= Type IDENT
+           | FormPars COMMA Type IDENT ;
+
+Type ::= IDENT
+       | IDENT LBRACKET RBRACKET ;
+
+Block ::= LBRACE StatementList RBRACE ;
+
+StatementList ::= StatementList Statement
+                | /* vazio */ ;
+
+Statement ::= Designator ASSIGN Expr SEMI
+            | Designator ActPars SEMI
+            | KEY_IF LPAREN Condition RPAREN Statement
+            | KEY_IF LPAREN Condition RPAREN Statement KEY_ELSE Statement
+            | KEY_WHILE LPAREN Condition RPAREN Statement
+            | KEY_RETURN SEMI
+            | KEY_RETURN Expr SEMI
+            | KEY_READ LPAREN Designator RPAREN SEMI
+            | KEY_PRINT LPAREN Expr RPAREN SEMI
+            | KEY_PRINT LPAREN Expr COMMA INT RPAREN SEMI
+            | Block
+            | SEMI ;
+
+ActPars ::= LPAREN RPAREN
+          | LPAREN ExprList RPAREN ;
+
+ExprList ::= Expr
+           | ExprList COMMA Expr ;
+
+Condition ::= Expr Relop Expr ;
+
+Relop ::= RELOP_EQ | RELOP_NE | RELOP_GT | RELOP_GE | RELOP_LT | RELOP_LE ;
+
+Expr ::= Term
+       | ADDOP_MINUS Term
+       | Expr Addop Term ;
+
+Term ::= Factor
+       | Term Mulop Factor ;
+
+Factor ::= Designator
+         | Designator ActPars
+         | INT
+         | FLOAT
+         | CHAR
+         | KEY_NEW IDENT
+         | KEY_NEW IDENT LBRACKET Expr RBRACKET
+         | LPAREN Expr RPAREN ;
+
+Designator ::= IDENT
+             | Designator DOT IDENT
+             | Designator LBRACKET Expr RBRACKET ;
+
+Addop ::= ADDOP_PLUS | ADDOP_MINUS ;
+Mulop ::= MULOP_MULT | MULOP_DIV | MULOP_MOD ;

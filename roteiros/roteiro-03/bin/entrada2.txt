@@ -1,0 +1,17 @@
+program TesteWhile
+    int contador;
+    int limite;
+{
+    void loopInterativo()
+    {
+        contador = 0;
+        limite = 20;
+
+        while (contador <= limite) {
+            if (contador % 2 == 0) {
+                print(contador);
+            }
+            contador = contador + 1;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+--- Iniciando Analise Lexica e Sintatica ---
+Lendo o arquivo: entrada.txt
+--------------------------------------------
+[1,1] KEY_PROGRAM: program
+[1,9] IDENT: Exemplo
+[2,5] KEY_FINAL: final
+[2,11] IDENT: int
+[2,15] IDENT: MAX
+[2,19] ASSIGN: =
+[2,21] INT: 10
+[2,23] SEMI: ;
+[3,5] IDENT: int
+[3,9] IDENT: x
+[3,10] SEMI: ;
+[4,1] LBRACE: {
+[5,5] KEY_VOID: void
+[5,10] IDENT: main
+[5,14] LPAREN: (
+[5,15] RPAREN: )
+[6,5] LBRACE: {
+[7,9] IDENT: x
+[7,11] ASSIGN: =
+[7,13] INT: 5
+[7,14] SEMI: ;
+[8,9] KEY_IF: if
+[8,12] LPAREN: (
+[8,13] IDENT: x
+[8,15] RELOP_LT: <
+[8,17] IDENT: MAX
+[8,20] RPAREN: )
+[8,22] LBRACE: {
+[9,13] KEY_PRINT: print
+[9,18] LPAREN: (
+[9,19] IDENT: x
+[9,20] RPAREN: )
+[9,21] SEMI: ;
+[10,9] RBRACE: }
+[10,11] KEY_ELSE: else
+[10,16] LBRACE: {
+[11,13] KEY_PRINT: print
+[11,18] LPAREN: (
+[11,19] IDENT: MAX
+[11,22] RPAREN: )
+[11,23] SEMI: ;
+[12,9] RBRACE: }
+[13,5] RBRACE: }
+[14,1] RBRACE: }
+--------------------------------------------
+--- Analise Concluida com SUCESSO! ---

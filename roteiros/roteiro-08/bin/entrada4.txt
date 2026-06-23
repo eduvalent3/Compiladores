@@ -1,0 +1,13 @@
+program TesteConstantes
+    final int STATUS_OK = 1;
+    final int STATUS_ERRO = 0;
+{
+    int verificarStatus(int resultado)
+    {
+        if (resultado >= 50) {
+            return STATUS_OK;
+        } else {
+            return STATUS_ERRO;
+        }
+    }
+}

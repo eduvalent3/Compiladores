@@ -1,0 +1,58 @@
+--- Iniciando Analise Lexica e Sintatica ---
+Lendo o arquivo: entrada2.txt
+--------------------------------------------
+[1,1] KEY_PROGRAM: program
+[1,9] IDENT: TesteWhile
+[2,5] IDENT: int
+[2,9] IDENT: contador
+[2,17] SEMI: ;
+[3,5] IDENT: int
+[3,9] IDENT: limite
+[3,15] SEMI: ;
+[4,1] LBRACE: {
+[5,5] KEY_VOID: void
+[5,10] IDENT: loopInterativo
+[5,24] LPAREN: (
+[5,25] RPAREN: )
+[6,5] LBRACE: {
+[7,9] IDENT: contador
+[7,18] ASSIGN: =
+[7,20] INT: 0
+[7,21] SEMI: ;
+[8,9] IDENT: limite
+[8,16] ASSIGN: =
+[8,18] INT: 20
+[8,20] SEMI: ;
+[10,9] KEY_WHILE: while
+[10,15] LPAREN: (
+[10,16] IDENT: contador
+[10,25] RELOP_LE: <=
+[10,28] IDENT: limite
+[10,34] RPAREN: )
+[10,36] LBRACE: {
+[11,13] KEY_IF: if
+[11,16] LPAREN: (
+[11,17] IDENT: contador
+[11,26] MULOP_MOD: %
+[11,28] INT: 2
+[11,30] RELOP_EQ: ==
+[11,33] INT: 0
+[11,34] RPAREN: )
+[11,36] LBRACE: {
+[12,17] KEY_PRINT: print
+[12,22] LPAREN: (
+[12,23] IDENT: contador
+[12,31] RPAREN: )
+[12,32] SEMI: ;
+[13,13] RBRACE: }
+[14,13] IDENT: contador
+[14,22] ASSIGN: =
+[14,24] IDENT: contador
+[14,33] ADDOP_PLUS: +
+[14,35] INT: 1
+[14,36] SEMI: ;
+[15,9] RBRACE: }
+[16,5] RBRACE: }
+[17,1] RBRACE: }
+--------------------------------------------
+--- Analise Concluida com SUCESSO! ---

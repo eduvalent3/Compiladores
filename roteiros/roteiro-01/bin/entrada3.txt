@@ -1,0 +1,19 @@
+program TesteEstruturas
+    class Item {
+        int id;
+        int quantidade;
+    }
+    
+    int[] vetorDados;
+{
+    int calcularTotal(int preco, int qtd)
+    {
+        return preco * qtd;
+    }
+
+    void rodar()
+    {
+        vetorDados = new int[5];
+        print(calcularTotal(10, 3));
+    }
+}
